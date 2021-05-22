@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script defer src="app.js"></script>
+
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="username-wrapper">
+        <input type="text" name="username" id="username" placeholder="username" required />
+        <input type="text" name="room" id="room" placeholder="room name" required />
+        <button id="submit-username">Send</button>
+    </div>
+
+    <div id="chat" class="hidden">
+        <ul id="messages">
+
+        </ul>
+
+        <input type="text" name="message" id="message" placeholder="message" required />
+        <button id="submit-message">Send</button>
+
+        <ul id="participants">
+
+        </ul>
+    </div>
+</body>
+
+</html>
