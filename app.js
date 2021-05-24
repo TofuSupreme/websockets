@@ -32,10 +32,11 @@ submitMessage.onclick = () => {
 }
 
 // Listens for incoming events on the 'message' channel.
-socket.on('message', ({ from, text }) => {
+socket.on('message', messageObj => {
+    console.log(messageObj)
     // Pushes the received message to the DOM.
     const el = document.createElement('li')
-    el.innerHTML = from + ': ' + text
+    el.innerHTML = messageObj.from + ': ' + messageObj.text
     document.getElementById('messages').appendChild(el)
 })
 
