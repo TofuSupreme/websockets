@@ -23,7 +23,10 @@ const chat = io.of('/chat')
 chat.on('connection', (socket) => {
     //User is able to join room
 
-    socket.join('room')
+    socket.on('join', (room) => {
+        socket.join(room)
+        socket.room = room
+    })
 
      //Server is able to pick up message through sendMessage channel on the Client side
     socket.on('sendMessage', (text)=>{
@@ -33,23 +36,11 @@ chat.on('connection', (socket) => {
         //Server side is able to send message back to Client through message channel
         let messageObj = {
             from: '',
-            text: ''
+            text: text
         }
 
-    chat.in('room').emit('message', messageObj)
+        chat.in(socket.room).emit('message', messageObj)
     })
 
-    }) 
-
-
-    // socket.emit('message', ({from, text}))
-    //that a user has entered a room through console.log <-Issues with username and room name
-
-    // chat.adapter.on('join-room', (room, username)=>{
-    //     console.log(`${username} has joined ${room}`)
-    // })
-
-
-
-    // Code goes here
+}) 
 
